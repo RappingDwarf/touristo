@@ -28,7 +28,7 @@ export default function DatePicker(){
     // Hier musst du deinen API-Schlüssel eintragen
     console.log(startDate)
     console.log(endDate)
-    const url = `https://openholidaysapi.org/PublicHolidays?countryIsoCode=DE&languageIsoCode=DE&validFrom=${startDate}&validTo=${endDate}&subdivisionCode=DE-BE`;
+    const url = `https://openholidaysapi.org/SchoolHolidays?countryIsoCode=DE&languageIsoCode=DE&validFrom=${startDate}&validTo=${endDate}&subdivisionCode=DE-MV`;
     
     const response = await fetch(url);
     if (response.ok) {

@@ -3,24 +3,41 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { View } from 'react-native';
 
 const Dropdown = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState([]);
+  const [items, setItems] = useState([
+    {label: 'Spanien', value: 'spain'},
+    {label: 'Schweiz', value: 'swiss'},
+    {label: 'Österreich', value: 'austria'},
+    {label: 'Italien', value: 'italy'},
+    {label: 'Kroatien', value: 'croatia'},
+    {label: 'Tschechien', value: 'tschech'}
+  ]);
 
   return (
     <View>
       <DropDownPicker
-        items={[
-          { label: 'Item 1', value: 'item1' },
-          { label: 'Item 2', value: 'item2' },
-          { label: 'Item 3', value: 'item3' },
-        ]}
-        defaultValue={selectedItem || 'item1'}
-        containerStyle={{ height: 40 }}
-        style={{ backgroundColor: '#fafafa' }}
-        itemStyle={{
-          justifyContent: 'flex-start'
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+
+        theme="LIGHT"
+        multiple={true}
+        mode="BADGE"
+        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+
+        placeholder="Wähle ein Element"
+
+        style={{ width: 350 }}
+        textStyle={{
+          fontSize: 18
         }}
-        dropDownStyle={{ backgroundColor: '#fafafa' }}
-        onChangeItem={item => setSelectedItem(item.value)}
+        containerStyle={{
+          width: 350
+        }}
       />
     </View>
   );

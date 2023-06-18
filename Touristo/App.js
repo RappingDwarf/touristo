@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import CustomButton from './components/Buttons';
 import Dropdown from './components/Dropdown';
+import Calendar from './components/Calendar';
 
 export default function App() {
   const handleButtonPress = () => {
@@ -13,6 +14,7 @@ export default function App() {
       <Text>Open up App.js to start working on your app!</Text>
       <CustomButton onPress={handleButtonPress} title="Klick mich!" />
       <Dropdown />
+      <Calendar/>
     </View>
   );
 }

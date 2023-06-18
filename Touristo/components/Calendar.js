@@ -7,8 +7,9 @@ export default function DatePicker(){
   const [endDate, setEndDate] = useState('');
 
   useEffect(() => {
-    console.log(startDate);
-    console.log(endDate);
+    if (startDate && endDate) {
+      checkHolidays();
+    }
   }, [startDate, endDate]);
 
   const onDayPress = (day) => {
@@ -17,11 +18,9 @@ export default function DatePicker(){
       setEndDate('');
     } else {
       setEndDate(day.dateString);
-      checkHolidays();
     }
-    
-    
   }
+
 
   
 

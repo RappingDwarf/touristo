@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { View } from 'react-native';
 
-const Dropdown = () => {
+const Dropdown = ({ setSelectedCountry }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState([]);
   const [items, setItems] = useState([
-    {label: 'Spanien', value: 'spain'},
+    {label: 'Deutschland', value: 'DE'},
     {label: 'Schweiz', value: 'swiss'},
     {label: 'Österreich', value: 'austria'},
     {label: 'Italien', value: 'italy'},
     {label: 'Kroatien', value: 'croatia'},
     {label: 'Tschechien', value: 'tschech'}
   ]);
+
+  const handleValueChange = useCallback((value) => {
+    setValue(value);
+    setSelectedCountry(value);
+  }, [setSelectedCountry]);
 
   return (
     <View>
@@ -21,7 +26,7 @@ const Dropdown = () => {
         value={value}
         items={items}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={handleValueChange}
         setItems={setItems}
 
         theme="LIGHT"
@@ -42,5 +47,7 @@ const Dropdown = () => {
     </View>
   );
 };
+
+
 
 export default Dropdown;

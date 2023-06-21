@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Table, Row } from 'react-native-table-component';
 
 import CustomButton from './components/Buttons';
 import Dropdown from './components/Dropdown';
@@ -50,15 +51,36 @@ function SearchScreen() {
 function ResultsScreen({ route }) {
   const { results } = route.params;
 
+  const tableHead = ['Name', 'Startdatum', 'Enddatum', 'Typ'];
+  const tableData = results.map((result) => [
+    result.name.de,
+    result.startDate,
+    result.endDate,
+    result.type,
+  ]);
+
   return (
-    <View style={styles.container}>
+    <View style={resultstyle.container}>
       <Text>Ergebnisse</Text>
-      {results.map((result, index) => (
-        <Text key={index}>{JSON.stringify(result)}</Text>
-      ))}
+      <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+        <Row data={tableHead} style={styles.head} textStyle={styles.text} />
+        {tableData.map((rowData, index) => (
+          <Row
+            key={index}
+            data={rowData}
+            textStyle={styles.text}
+          />
+        ))}
+      </Table>
     </View>
   );
 }
+
+const resultstyle = StyleSheet.create({
+  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  text: { margin: 6 },
+});
 
 export default function App() {
   return (

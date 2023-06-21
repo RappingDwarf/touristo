@@ -5890,6 +5890,11 @@
   "resolved" "https://registry.npmjs.org/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz"
   "version" "1.0.5"
 
+"react-native-table-component@^1.2.2":
+  "integrity" "sha512-7bbsi5431iWcjj3toASh8lFHGi6AG/+MTd4M7GuksXKxx/CFs/Qwv1Ys7D2wgyuYKe3hxWNfSVrteFj0tOYXYw=="
+  "resolved" "https://registry.npmjs.org/react-native-table-component/-/react-native-table-component-1.2.2.tgz"
+  "version" "1.2.2"
+
 "react-native@*", "react-native@>= 0.30.0", "react-native@0.71.8":
   "integrity" "sha512-ftMAuhpgTkbHU9brrqsEyxcNrpYvXKeATY+if22Nfhhg1zW+6wn95w9otwTnA3xHkljPCbng8mUhmmERjGEl7g=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.71.8.tgz"

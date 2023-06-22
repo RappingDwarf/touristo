@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { getHolidays } from './components/api';
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,6 +9,7 @@ import { Table, Row } from 'react-native-table-component';
 import CustomButton from './components/Buttons';
 import Dropdown from './components/Dropdown';
 import Calendar from './components/Calendar';
+import HolidaysCalendar from './components/HolidaysCalendar';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +52,7 @@ function SearchScreen() {
 
 function ResultsScreen({ route }) {
   const { results } = route.params;
+  const holidays = results;
 
   const tableHead = ['Name', 'Startdatum', 'Enddatum', 'Typ'];
   const tableData = results.map((result) => [
@@ -72,6 +75,7 @@ function ResultsScreen({ route }) {
           />
         ))}
       </Table>
+      <HolidaysCalendar holidays={holidays} />
     </View>
   );
 }

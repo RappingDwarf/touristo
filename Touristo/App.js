@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { getHolidays } from './components/api';
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -25,14 +25,14 @@ function SearchScreen() {
     console.log('Startdatum:', startDate);
     console.log('Enddatum:', endDate);
 
-    const url = `https://openholidaysapi.org/SchoolHolidays?countryIsoCode=${landcode[0]}&languageIsoCode=${landcode[0]}&validFrom=${startDate}&validTo=${endDate}&subdivisionCode=DE-MV`;
+    const url = `https://openholidaysapi.org/SchoolHolidays?countryIsoCode=${landcode[0]}&languageIsoCode=&validFrom=${startDate}&validTo=${endDate}&subdivisionCode=`;
 
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
       // Hier kannst du die Antwort der API auswerten
       console.log(data);
-      navigation.navigate('Results', { results: data });
+      navigation.navigate('Ergebnisse', { results: data });
     } else {
       console.error(`Fehler: ${response.status}`);
     }
@@ -40,12 +40,11 @@ function SearchScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Touristo</Text>
       <View style={{ zIndex: 1 }}>
         <Dropdown setSelectedCountry={setSelectedCountry} />
       </View>
       <Calendar setStartDate={setStartDate} setEndDate={setEndDate} />
-      <CustomButton onPress={handleButtonPress} title="Klick mich!" />
+      <CustomButton onPress={handleButtonPress} title="Suchen" />
     </View>
   );
 }
@@ -56,26 +55,29 @@ function ResultsScreen({ route }) {
 
   const tableHead = ['Name', 'Startdatum', 'Enddatum', 'Typ'];
   const tableData = results.map((result) => [
-    result.name.de,
+    `${result.name[0].text} (${result.subdivisions[0].shortName})`,
     result.startDate,
     result.endDate,
     result.type,
   ]);
+  
 
   return (
     <View style={resultstyle.container}>
       <Text>Ergebnisse</Text>
-      <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-        <Row data={tableHead} style={styles.head} textStyle={styles.text} />
-        {tableData.map((rowData, index) => (
-          <Row
-            key={index}
-            data={rowData}
-            textStyle={styles.text}
-          />
-        ))}
-      </Table>
-      <HolidaysCalendar holidays={holidays} />
+      <ScrollView>
+        <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+          <Row data={tableHead} style={styles.head} textStyle={styles.text} />
+          {tableData.map((rowData, index) => (
+            <Row
+              key={index}
+              data={rowData}
+              textStyle={styles.text}
+            />
+          ))}
+        </Table>
+      </ScrollView>
+      {/* <HolidaysCalendar holidays={holidays} /> */}
     </View>
   );
 }
@@ -90,18 +92,32 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="Results" component={ResultsScreen} />
+        <Stack.Screen name="Suchen" component={SearchScreen} />
+        <Stack.Screen name="Ergebnisse" component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
+  /*
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  }
+  */
+  container: {
+    flex: 1,
+    padding: 20,
+    paddingTop: 30,
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    gap: 50
+  },
+  text: {
+    fontSize: 12,
+    color: '#333',
   },
 });

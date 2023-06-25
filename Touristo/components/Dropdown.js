@@ -7,10 +7,10 @@ const Dropdown = ({ setSelectedCountry }) => {
   const [value, setValue] = useState([]);
   const [items, setItems] = useState([
     {label: 'Deutschland', value: 'DE'},
-    {label: 'Schweiz', value: 'swiss'},
-    {label: 'Österreich', value: 'austria'},
-    {label: 'Italien', value: 'italy'},
-    {label: 'Kroatien', value: 'croatia'},
+    {label: 'Schweiz', value: 'CH'},
+    {label: 'Österreich', value: 'AT'},
+    {label: 'Italien', value: 'IT'},
+    {label: 'Kroatien', value: 'HR'},
     {label: 'Tschechien', value: 'tschech'}
   ]);
 

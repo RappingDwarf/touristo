@@ -13,15 +13,13 @@ const styles = StyleSheet.create({
   button: {
     height: 56,
     width: 350,
-    marginLeft: 20,
-    marginRight: 20,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0085FF', // Beispielhafte Hintergrundfarbe
+    backgroundColor: '#0085FF',
   },
   buttonText: {
-    color: '#FFFFFF', // Beispielhafte Textfarbe
+    color: '#FFFFFF',
     fontSize: 20,
   },
 });
